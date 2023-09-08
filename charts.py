@@ -1,3 +1,5 @@
+# Nauka wizualizacji prostych danych
+
 import matplotlib.pyplot as plt
 
 plt.style.use('ggplot') # Bardzo ładne wizualnie wykresy :)
