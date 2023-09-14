@@ -8,16 +8,10 @@ from plotly import offline
 die = Die()
 
 # Wykonanie pewnej liczby rzutów i umieszczenie wyników na liście.
-results = []
-for roll_num in range(1000):
-    result = die.roll()
-    results.append(result)
+results = [die.roll() for roll_num in range(1000)]
 
 # Analiza wyników.
-frequencies = []
-for value in range(1, die.num_sides+1):
-    frequency = results.count(value)
-    frequencies.append(frequency)
+frequencies = [results.count(value) for value in range(1, die.num_sides+1)]
 
 # Wizualizacja wyników.
 x_values = list(range(1, die.num_sides+1)) # Lista rozpoczynająca się od 1 i kończąca na ilości ścianek kości.
