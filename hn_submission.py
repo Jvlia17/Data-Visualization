@@ -4,19 +4,20 @@ import requests
 
 # Wykonanie wywołania API i zachowanie otrzymanej odpowiedzi.
 url = 'https://hacker-news.firebaseio.com/v0/topstories.json'
-r = requests.get(url)
+r = requests.get(url) # r -> lista zawierająca identyfikatory 500 najpopularniejszych atrykułów w wietrynie Hacker News.
 print(f"Kod stanu: {r.status_code}")
+print(r)
 
 # Przetworzenie informacji o każdym artykule.
-submission_ids = r.json()
+submission_ids = r.json() # Zamiana tekstu odpowiedzi na listę zawierającą id atrykułów.
 submission_dicts = []
-for submission_id in submission_ids[:30]:
+for submission_id in submission_ids[:30]: # Interesuje nas 30 pierwszych artykułów.
     # Przygotowanie oddzielnego wywołania API dla każdego artykułu.
-    url = ('https://hacker-news.firebaseio.com/v0/item/' +
+    url = (f'https://hacker-news.firebaseio.com/v0/item/' +
            str(submission_id) + '.json')
-    submission_r = requests.get(url)
-    print(submission_r.status_code)
-    response_dict = submission_r.json()
+    r = requests.get(url)
+    print(r.status_code)
+    response_dict = r.json()
 
     submission_dict = {
         'title': response_dict['title'],
